@@ -2,3 +2,6 @@ pandas===2.2.0
 pyarrow===15.0.0
 matplotlib===3.8.3
 pycountry===23.12.11
+dvc===3.47.0
+dvc-s3===3.0.1
+dvclive===3.44.0
