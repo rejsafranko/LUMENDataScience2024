@@ -1,6 +1,6 @@
 ### DVC CML TEMPLATE
-# stages:
-#   - cml_run
+stages:
+  - cml_run
 
 # cml:
 #   stage: cml_run
