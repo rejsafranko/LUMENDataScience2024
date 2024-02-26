@@ -1,0 +1,23 @@
+### DVC CML TEMPLATE
+# stages:
+#   - cml_run
+
+# cml:
+#   stage: cml_run
+#   image: dvcorg/cml-py3:latest
+#   script:
+#     - dvc pull data
+
+#     - pip install -r requirements.txt
+#     - dvc repro
+
+#     # Compare metrics to master
+#     - git fetch --prune
+#     - dvc metrics diff --show-md master >> report.md
+#     - echo >> report.md
+
+#     # Visualize loss function diff
+#     - dvc plots diff
+#       --target loss.csv --show-vega master > vega.json
+#     - vl2png vega.json | cml-publish --md >> report.md
+#     - cml-send-comment report.md
