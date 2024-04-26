@@ -5,5 +5,11 @@ models/*
 !models/.gitkeep
 
 venv
-
 .env
+
+src/api/*.js
+!src/api/jest.config.js
+src/api/*.d.ts
+src/api/node_modules
+src/api/.cdk.staging
+src/api/cdk.out
