@@ -21,9 +21,14 @@ The deployment code is in src/api. Inside this directory we initialized an AWS C
 With this setup, a client just pings the Lambda function endpoint with a POST request which contains the input data in the body parameter. Since one Lambda function call costs $0.0000002, this setup is a cheap option which eliminates the need for maintaining a server.
 
 Commands used for creating an AWS CDK Project:
+
 ```npm install -g aws-cdk```
+
 ```cdk init app --language typescript```
 
+
 Commands used to deploy the Lambda function:
+
 ```cdk bootstrap --region [REGION]```
+
 ```cdk deploy```
