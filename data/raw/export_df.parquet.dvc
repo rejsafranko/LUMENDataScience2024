@@ -1,5 +1,0 @@
-outs:
-- md5: 926e69876cbc75c059ddc60632c3b0ba
-  size: 3243064
-  hash: md5
-  path: export_df.parquet

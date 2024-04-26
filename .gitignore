@@ -1,5 +1,7 @@
-data/processed/*
-!data/processed/.gitkeep
+data/*
+!data/.gitkeep
 
 models/*
 !models/.gitkeep
+
+venv
