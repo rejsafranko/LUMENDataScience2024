@@ -19,3 +19,11 @@ We chose a serverless option to deploy the model. We used an AWS S3 bucket in th
 The deployment code is in src/api. Inside this directory we initialized an AWS CDK project in Typescript. The crucial part of the src/api/ CDK project are directories src/api/image and src/api/lib. The src/api/image contains the Dockerfile and the predict function Python file. The src/api/lib contains a Typescript file which defines the Lambda Function Stack configuration (function source code, memory size, timeout, function URL, CORS, authentication).
 
 With this setup, a client just pings the Lambda function endpoint with a POST request which contains the input data in the body parameter. Since one Lambda function call costs $0.0000002, this setup is a cheap option which eliminates the need for maintaining a server.
+
+Commands used for creating an AWS CDK Project:
+```npm install -g aws-cdk```
+```cdk init app --language typescript```
+
+Commands used to deploy the Lambda function:
+```cdk bootstrap --region [REGION]```
+```cdk deploy```
