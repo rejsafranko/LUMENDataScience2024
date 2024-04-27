@@ -1,0 +1,1 @@
+DROP TABLE lumendb.predictions_multistep_day; ----add time requriement to this query (day, week, month, multistep)
