@@ -165,7 +165,7 @@ def main(args):
     df = df[df["date_from"] <= df["date_to"]]
     df = df[df["reservation_date"] <= df["date_from"]]
 
-    # Calculate aggregates and expected room count
+    # Calculate aggregates and expected room count.
     grouped_df = calculate_aggregates(df.copy())
     expected_room_cnt = calculate_expected_room_count(df)
     final_result = merge_dataframes(grouped_df, expected_room_cnt)

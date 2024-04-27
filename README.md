@@ -1,6 +1,7 @@
-https://lizpynuyrfbnwnp52nblyy3syi0lyvpb.lambda-url.eu-central-1.on.aws/
+Multi-step: https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/
+One-step: https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/
 
-HTTP POST Request BODY: {"input":[6.1, 2.8, 4.7, 1.2]}
+HTTP GET
 
 
 
