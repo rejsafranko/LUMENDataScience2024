@@ -12,10 +12,15 @@ warnings.filterwarnings(
     message="X has feature names, but DecisionTreeRegressor was fitted without feature names",
 )
 
+warnings.filterwarnings(
+    "ignore",
+    category=FutureWarning,
+    message="'M' is deprecated and will be removed in a future version, please use 'ME' instead.",
+)
+
 
 def parse_args():
     parser = ArgumentParser()
-    parser.add_argument("--dataset_path", type=str, required=True)
     parser.add_argument("--model_path", type=str, required=True)
     return parser.parse_args()
 
@@ -29,15 +34,17 @@ def add_cyclical_features(df, col_name, max_val):
 def preprocess_data(df):
     df["stay_date"] = pd.to_datetime(df["stay_date"])
     df = df.groupby("stay_date")["room_cnt"].sum().reset_index()
-    df = df.set_index("stay_date").resample("M").sum().reset_index()
+    df = df.set_index("stay_date").resample("W").sum().reset_index()
     return df
 
 
 def feature_engineering(df):
     df["year"] = df["stay_date"].dt.year - 2007
     df["month"] = df["stay_date"].dt.month
+    df["week_of_year"] = df["stay_date"].dt.isocalendar().week
     df["quarter"] = df["stay_date"].dt.quarter
 
+    df = add_cyclical_features(df, "week_of_year", 52)
     df = add_cyclical_features(df, "month", 12)
     return df
 
@@ -91,12 +98,11 @@ def evaluate_model(y_true, y_pred):
 
 
 def main(args):
-    df = pd.read_parquet(args.dataset_path)
+    df = pd.read_parquet("data/processed/train.parquet")
     df["reservation_date"] = pd.to_datetime(df["reservation_date"])
     df["date_from"] = pd.to_datetime(df["date_from"])
     df["date_to"] = pd.to_datetime(df["date_to"])
     df["lead_time_days"] = (df["date_from"] - df["reservation_date"]).dt.days
-    df = df.iloc[2:]
     checked_out_reservations = df[df["reservation_status"] == "Checked-out"]
     df = checked_out_reservations.copy()
     df = df[(df["stay_date"] >= df["date_from"]) & (df["stay_date"] <= df["date_to"])]
