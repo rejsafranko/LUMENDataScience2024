@@ -67,10 +67,9 @@ def main(args):
     df = pd.read_parquet(args.dataset_path)
     processed_data = preprocess_data(df)
     processed_data = feature_engineering(processed_data)
-    _, test_data, X_train, y_train, _, _ = split_data(processed_data, "2009-1-03")
+    _, _, X_train, y_train, _, _ = split_data(processed_data, "2009-1-03")
     model = train_model(X_train, y_train)
     joblib.dump(model, args.model_save_path + "rf_multistep_day.joblib")
-    test_data.to_csv("data/evaluation/test_multistep_day.csv", index=False)
 
 
 if __name__ == "__main__":

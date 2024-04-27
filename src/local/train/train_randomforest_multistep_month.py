@@ -56,15 +56,25 @@ def train_model(X_train, y_train):
 
 def main(args):
     df = pd.read_parquet(args.dataset_path)
+
+    df["reservation_date"] = pd.to_datetime(df["reservation_date"])
+    df["date_from"] = pd.to_datetime(df["date_from"])
+    df["date_to"] = pd.to_datetime(df["date_to"])
+    df["lead_time_days"] = (df["date_from"] - df["reservation_date"]).dt.days
+    df = df.iloc[2:]
+    checked_out_reservations = df[df["reservation_status"] == "Checked-out"]
+    df = checked_out_reservations.copy()
+    df = df[(df["stay_date"] >= df["date_from"]) & (df["stay_date"] <= df["date_to"])]
+    df = df[df["date_from"] <= df["date_to"]]
+    df = df[df["reservation_date"] <= df["date_from"]]
+
     processed_data = preprocess_data(df)
     processed_data = feature_engineering(processed_data)
-    _, test_data, X_train, y_train, _, _ = split_data(
-        processed_data, "2009-1-03"
-    )
+    _, _, X_train, y_train, _, _ = split_data(processed_data, "2009-1-03")
     model = train_model(X_train, y_train)
     joblib.dump(model, args.model_save_path + "rf_multistep_month.joblib")
-    test_data.to_csv("data/evaluation/test_multistep_month.csv", index=False)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     args = parse_args()
     main(args)
