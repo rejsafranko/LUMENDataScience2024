@@ -6,7 +6,6 @@ data/*
 models/*
 !models/.gitkeep
 
-venv
 .env
 
 src/api/*.js
