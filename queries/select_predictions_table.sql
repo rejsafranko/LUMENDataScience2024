@@ -1,1 +1,1 @@
-SELECT * FROM lumendb.predictions
+SELECT * FROM lumendb.predictions_month; --add time requriement to this query

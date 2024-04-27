@@ -27,33 +27,35 @@ def load_data_to_rds(csv_file, host, user, password, database):
     )
     cursor = connection.cursor()
 
-    # Create a table if it doesn't exist.
-    cursor.execute(
+    # Create tables if they don't exist.
+    for time in ["day", "week", "month"]: 
+        cursor.execute(
+            f"""
+            CREATE TABLE IF NOT EXISTS lumendb.predictions_{time} (
+                stay_date DATETIME,
+                lower_bound INTEGER,
+                upper_bound INTEGER,
+                predicted_rooms INTEGER,
+                total_rooms INTEGER
+            )   
         """
-        CREATE TABLE IF NOT EXISTS lumendb.predictions (
-            stay_date DATETIME,
-            lower_bound INTEGER,
-            upper_bound INTEGER,
-            predicted_rooms INTEGER,
-            total_rooms INTEGER
-        )   
-    """
-    )
+        )
 
     # Insert data into the table.
-    for index, row in df.iterrows():
-        cursor.execute(
-            """INSERT INTO lumendb.predictions 
-               (stay_date, lower_bound, upper_bound, predicted_rooms, total_rooms) 
-               VALUES (STR_TO_DATE(%s, '%m/%d/%Y'), %s, %s, %s, %s)""",
-            (
-                row["stay_date"],
-                row["lower_bound"],
-                row["upper_bound"],
-                row["predicted_rooms"],
-                row["total_rooms"],
-            ),
-        )
+    for time in ["day", "week", "month"]:    
+        for index, row in df.iterrows():
+            cursor.execute(
+                f"""INSERT INTO lumendb.predictions_{time}
+                (stay_date, lower_bound, upper_bound, predicted_rooms, total_rooms) 
+                VALUES (STR_TO_DATE(%s, '%m/%d/%Y'), %s, %s, %s, %s)""",
+                (
+                    row["stay_date"],
+                    row["lower_bound"],
+                    row["upper_bound"],
+                    row["predicted_rooms"],
+                    row["total_rooms"],
+                ),
+            )
 
     connection.commit()
 
