@@ -1,1 +1,0 @@
-DROP TABLE lumendb.predictions_month

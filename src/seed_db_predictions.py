@@ -28,7 +28,7 @@ def load_data_to_rds(csv_file, host, user, password, database):
     cursor = connection.cursor()
 
     # Create tables if they don't exist.
-    for time in ["day", "week", "month"]: 
+    for time in ["day", "week", "month", "multistep"]: 
         cursor.execute(
             f"""
             CREATE TABLE IF NOT EXISTS lumendb.predictions_{time} (
@@ -42,7 +42,7 @@ def load_data_to_rds(csv_file, host, user, password, database):
         )
 
     # Insert data into the table.
-    for time in ["day", "week", "month"]:    
+    for time in ["day", "week", "month", "multistep"]:    
         for index, row in df.iterrows():
             cursor.execute(
                 f"""INSERT INTO lumendb.predictions_{time}

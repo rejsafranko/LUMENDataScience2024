@@ -1,1 +1,1 @@
-SELECT * FROM lumendb.predictions_month; --add time requriement to this query
+SELECT * FROM lumendb.predictions_multistep; --add time requriement to this query (day, week, month, multistep)
