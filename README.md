@@ -1,13 +1,36 @@
-Multi-step: https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/
-One-step: https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/
-
-HTTP GET
-
-
 
 # Documentation
 
 ### 1. Usage
+**How to Run the Multi-step and One-step Prediction APIs**
+
+**Multi-step and One-step API**
+**Set Up Your Environment:**
+- **Navigate** to the **one-step-multi-step-api folder**.
+- **Execute** the command **python app.py** in your command prompt.
+
+**Upload and Visualize Data:**
+- **Access** the web interface at **http://127.0.0.1:1234**.
+- **Upload** your **test.parquet** file to view the results.
+
+**Results:**
+- The interface will display **daily, weekly, and monthly predictions** for both **one-step** and **multi-step** processes across the entire test dataset.
+
+**Specific One-step Daily Model**
+**Set Up Your Environment:**
+- **Navigate** to the **daily-one-step-api-v1/flask_app folder**.
+- **Execute** the command **python app.py** in your command prompt.
+
+**Upload and Visualize Data:**
+- **Access** the web interface at **http://127.0.0.1:5000**.
+- **Upload** your **test.parquet** file. Note that visualization may take some time due to the model specifics.
+
+**Model Specifics:**
+- This model integrates a **classification scheme** for predicting **reservation cancellations** and a **regression model** for estimating the number of **occupied rooms**.
+
+**Access via HTTP GET**
+- **Multi-step API Endpoint:** **https://cv7b3eubc3ddeeqklbxndce2n40rimfk.lambda-url.eu-central-1.on.aws/**
+- **One-step API Endpoint:** **https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/**
 
 ### 2. Data
 
