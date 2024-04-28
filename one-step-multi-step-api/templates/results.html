@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .plot {
+            margin-bottom: 20px;
+        }
+        .metrics {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <a href="/">BACK</a>
+    {% for result in results %}
+        <h1>{{ result.title }}</h1>
+        <div class="plot">
+            <h2>Forecast Plot</h2>
+            <!-- Embed the plot HTML from Plotly directly -->
+            {{ result.plot_html|safe }}
+        </div>
+        <div class="metrics">
+            <h2>Evaluation Metrics</h2>
+            <p>Precision: {{ result.precision_result }}</p>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+                {% for metric_name, metric_value in result.evaluation_results.items() %}
+                <tr>
+                    <td>{{ metric_name }}</td>
+                    <td>{{ metric_value }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div style = 'margin-bottom: 35px'>
+        <br>
+        <hr>
+    {% endfor %}
+</body>
+</html>
