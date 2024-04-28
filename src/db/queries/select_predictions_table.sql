@@ -1,1 +1,1 @@
-SELECT * FROM lumendb.predictions_multistep_day;
+SELECT * FROM lumendb.predictions_month;
