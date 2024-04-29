@@ -28,7 +28,8 @@
 **Model Specifics:**
 - This model integrates a **classification scheme** for predicting **reservation cancellations** and a **regression model** for estimating the number of **occupied rooms**.
 
-** IMPORTANT!!! ** Deployed Models on AWS currently are not predicting data correctly. Will be fixed soon!
+**IMPORTANT!!!** Deployed Models on AWS currently are not predicting data correctly. Will be fixed soon!
+
 **Access via HTTP GET**
 - **Multi-step API Endpoint:** **https://cv7b3eubc3ddeeqklbxndce2n40rimfk.lambda-url.eu-central-1.on.aws/**
 - **One-step API Endpoint:** **https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/**
