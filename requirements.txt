@@ -1,6 +1,15 @@
-scikit-learn
 boto3
 pandas
 mysql-connector-python
 mysql-connector
 python-dotenv
+Flask==2.2.2
+joblib==1.2.0
+matplotlib==3.7.2
+numpy==1.24.4
+pandas==2.0.3
+plotly==5.9.0
+scikit_learn==1.4.2
+Werkzeug==2.2.3
+pyarrow==16.0.0
+fastparquet==2024.2.0

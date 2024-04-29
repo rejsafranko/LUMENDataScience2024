@@ -32,11 +32,27 @@
 - **Multi-step API Endpoint:** **https://cv7b3eubc3ddeeqklbxndce2n40rimfk.lambda-url.eu-central-1.on.aws/**
 - **One-step API Endpoint:** **https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/**
 
-### 2. Data
+### 2. Project Structure
+# Project Structure
 
-### 3. Model
+The project is organized into several directories, each with a specific type of content:
 
-### 4. Deployment
+- `/.git` - This directory contains Git version control system files, which are used for tracking changes in the project files over time.
+
+- `/notebooks` - Jupyter notebooks with data cleaning, exploratory data analysis, model development, etc. can be found here.
+
+- `/one-step-multi-step-api` - This directory houses the combined API for both one-step and multi-step prediction models.
+
+- `/daily-one-step-api-v1` - This folder holds the the API for the daily one-step prediction model.
+
+- `/data` - Contains datasets used by the models, including training, validation, and test sets.
+
+- `/documentation` - Stores project documentation.
+
+- `/models` - Includes trained model files. 
+
+
+### 3. Deployment
 
 We chose a serverless option to deploy the model. We used an AWS S3 bucket in the Europe Central 1 Region (Frankfurt data center) to store the best performing model. To use the model for prediction, we deployed a Docker image as an AWS Lambda function. The Docker image is built in the AWS Lambda Python 3.11 runtime alongside the packages specified in the requirements file. The image contains prediction functions (one-step, multi-step) which are pinged with an HTTP GET Request. The prediction function makes the neccesary data transforms, loads the models and data from the S3 bucket, makes predictions for all the models and returns the prediction metrics as a response. The function also fills a MySQL Database hosted on AWS RDS with the prediction results. Those results are used to generate dashboards in Looker Studio which update every 15 minutes or on-demand.
 
