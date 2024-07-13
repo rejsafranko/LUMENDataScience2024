@@ -1,5 +1,7 @@
+# LUMEN Data Science 2024 2nd Place Solution
+## Hotel Occupancy Prediction with Time-Series Modeling
 
-# Documentation
+This is a mirrored repository of a project that won 2nd place in the LUMEN Data Science 2024 competition. The task was to predict the occupancy of hotel rooms in a future point of time. Our AWS Lambda deployment is currently offline but we provided a Flask server API that can be run in a local environment.
 
 ### 1. Usage
 **How to Run the Multi-step and One-step Prediction APIs**
@@ -28,14 +30,11 @@
 **Model Specifics:**
 - This model integrates a **classification scheme** for predicting **reservation cancellations** and a **regression model** for estimating the number of **occupied rooms**.
 
-**IMPORTANT!!!** Deployed Models on AWS currently are not predicting data correctly. Will be fixed soon!
-
-**Access via HTTP GET**
+**Access via HTTP GET Request to AWS Lambda**
 - **Multi-step API Endpoint:** **https://cv7b3eubc3ddeeqklbxndce2n40rimfk.lambda-url.eu-central-1.on.aws/**
 - **One-step API Endpoint:** **https://bu33nynn6hgg37pigtankuyypq0asggf.lambda-url.eu-central-1.on.aws/**
 
 ### 2. Project Structure
-# Project Structure
 
 The project is organized into several directories, each with a specific type of content:
 
@@ -54,7 +53,7 @@ The project is organized into several directories, each with a specific type of 
 - `/models` - Includes trained model files. 
 
 
-### 3. Deployment
+### 3. AWS Deployment
 
 We chose a serverless option to deploy the model. We used an AWS S3 bucket in the Europe Central 1 Region (Frankfurt data center) to store the best performing model. To use the model for prediction, we deployed a Docker image as an AWS Lambda function. The Docker image is built in the AWS Lambda Python 3.11 runtime alongside the packages specified in the requirements file. The image contains prediction functions (one-step, multi-step) which are pinged with an HTTP GET Request. The prediction function makes the neccesary data transforms, loads the models and data from the S3 bucket, makes predictions for all the models and returns the prediction metrics as a response. The function also fills a MySQL Database hosted on AWS RDS with the prediction results. Those results are used to generate dashboards in Looker Studio which update every 15 minutes or on-demand.
 
