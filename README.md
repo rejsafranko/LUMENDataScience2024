@@ -1,7 +1,7 @@
 # LUMEN Data Science 2024 2nd Place Solution
 ## Hotel Occupancy Prediction with Time-Series Modeling
 
-This is a mirrored repository of our project on GitLab that won 2nd place in the LUMEN Data Science 2024 competition. The task was to predict the occupancy of hotel rooms in a future point of time. Our AWS Lambda deployment is currently offline but we provided a Flask server API that can be run in a local environment.
+This is a mirrored repository of our project on GitLab that won 2nd place in the LUMEN Data Science 2024 competition. The task was to predict the occupancy of hotel rooms in a future point of time. Our AWS Lambda deployment is currently offline but we provided a Flask server API that can be run in a local environment. The repository was handed over for grading with an unknown test set but we will create and upload a new data split soon for playing with the project.
 
 ### 1. Usage
 **How to Run the Multi-step and One-step Prediction APIs**
